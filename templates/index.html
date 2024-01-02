@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+        }
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        select, input[type="file"] {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        label {
+            margin-top: 10px;
+        }
+        #response {
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+    <script>
+        function submitForm(event) {
+            event.preventDefault();
+            var formData = new FormData(document.getElementById('uploadForm'));
+            fetch('/', {
+                method: 'POST',
+                body: formData
+            }).then(response => response.json())
+              .then(data => {
+                  document.getElementById('response').innerHTML = 
+                      'Status: ' + (data.status_code === 200 ? 'Success' : 'Fail') + 
+                      '<br>Response: ' + data.text;
+              }).catch(error => {
+                  document.getElementById('response').textContent = 'Error: ' + error;
+              });
+        }
+    </script>
+</head>
+<body>
+    <h2>Upload CSV File to Endpoint</h2>
+    <form id="uploadForm" onsubmit="submitForm(event)">
+        <label for="endpoint">Choose an endpoint:</label>
+        <select name="endpoint" id="endpoint">
+            <option value="http://localhost:1880/fileupload">CSV File Upload</option>
+            <!-- Add other endpoints here  Examples below: -->
+            <option value="http://localhost:1880/fileupload">Shift Schedule</option>
+            <option value="http://localhost:1880/fileupload">Product Specification</option>
+            <option value="http://localhost:1880/fileupload">Scheduled Downtime</option>
+            <option value="http://localhost:1880/fileupload">Product Lineup</option>
+        </select>
+        <input type="file" name="file" required>
+        <input type="submit" value="Upload">
+    </form>
+    <div id="response"></div>
+</body>
+</html>
