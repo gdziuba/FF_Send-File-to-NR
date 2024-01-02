@@ -18,22 +18,44 @@ Edit the lines in the body of index.html to include the endpoints to which you w
 
 ## Operating Systems
 
-### Windows
+### Windows 
 
-Run 
+Clone the repository:
+```bash
+git clone https://github.com/gdziuba/FF_Send-File-to-NR.git
+```
+Navigate to the directory:
+```bash
+cd FF_Send-File-to-NR
+```
+Run the script:
+```bash
+.\start_app.bat
+```
 
-```start_app.bat```
-
-This will start the Flask Application and take you to localhost:5000 on the browser.
+This will install if necessary, start the Flask Application, and take you to localhost:5000 on the browser.
 
 ### Linux
 
-Make the script executable: Run 
+Clone the repository:
+```bash
+git clone https://github.com/gdziuba/FF_Send-File-to-NR.git
+```
+Navigate to the directory:
+```bash
+cd FF_Send-File-to-NR
+```
 
-```chmod +x setup_and_run.sh```
+Make the script executable: Run:
+
+```bash
+chmod +x setup_and_run.sh
+```
 
 To Run:
 
-```./setup_and_run.sh.```
+```bash
+./setup_and_run.sh
+```
 
 To access the application, open a browser to the ip:5000 of the running application.
